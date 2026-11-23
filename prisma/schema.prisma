@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Regalo solicitado por los padres. Solo una persona puede reservarlo.
+model Gift {
+  id        Int       @id @default(autoincrement())
+  name      String
+  detail    String?
+  icon      String    @default("Gift")
+  claimed   Boolean   @default(false)
+  claimedBy String?
+  message   String?
+  claimedAt DateTime?
+}
+
+// Confirmacion de asistencia a la invitacion
+model Rsvp {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+}
