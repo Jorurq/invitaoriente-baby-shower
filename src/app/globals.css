@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-quicksand);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fredoka);
+  --font-hand: var(--font-caveat);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Paleta limonada rosa: amarillo mantequilla, rosa pastel y cacao cálido
+     (inspirada en la mesa de limonada, los cuadros vichy y las margaritas) */
+  --color-cream: #fff8e8;
+  --color-paper: #fffdf4;
+  --color-butter: #fcefbe;
+  --color-butter-deep: #f7df96;
+  --color-blush: #fcd9e6;
+  --color-blush-deep: #f5b9cf;
+  --color-rose: #e086a3;
+  --color-rose-soft: #efadc3;
+  --color-cocoa: #6b5244;
+  --color-cocoa-soft: #a6917c;
+  --color-leaf: #cfe6b8;
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-slow: float 12s ease-in-out infinite;
+  --animate-bob: bob 3.5s ease-in-out infinite;
+  --animate-sway: sway 9s ease-in-out infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    50% {
+      transform: translateX(12px) rotate(5deg);
+    }
+  }
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+}
+
+:root {
+  --radius: 1.1rem;
+  --background: #fff8e8;
+  --foreground: #6b5244;
+  --card: #fffdf4;
+  --card-foreground: #6b5244;
+  --popover: #fffdf4;
+  --popover-foreground: #6b5244;
+  --primary: #e086a3;
+  --primary-foreground: #fff8e8;
+  --secondary: #fcefbe;
+  --secondary-foreground: #8a6d1f;
+  --muted: #f9efd7;
+  --muted-foreground: #a6917c;
+  --accent: #fcd9e6;
+  --accent-foreground: #a45573;
+  --destructive: #c75b6b;
+  --border: #f3e4c8;
+  --input: #f3e4c8;
+  --ring: #efadc3;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: #fcd9e6;
+    color: #6b5244;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar suave para listas largas */
+  .scroll-soft {
+    scrollbar-width: thin;
+    scrollbar-color: #f3bcce transparent;
+  }
+  .scroll-soft::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scroll-soft::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scroll-soft::-webkit-scrollbar-thumb {
+    background: #f3bcce;
+    border-radius: 999px;
+  }
+
+  /* Textura de papel del cuento: puntitos crema muy sutiles */
+  .paper-dots {
+    background-image: radial-gradient(circle at center, #f4ead6 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Cuadros vichy rosa (como el mantel de limonada) */
+  .gingham-pink {
+    background-color: #fff6f9;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(245, 185, 207, 0.5) 0 9px, rgba(255, 255, 255, 0) 9px 18px),
+      repeating-linear-gradient(90deg, rgba(245, 185, 207, 0.5) 0 9px, rgba(255, 255, 255, 0) 9px 18px);
+  }
+
+  /* Cuadros vichy amarillos */
+  .gingham-yellow {
+    background-color: #fffaea;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(247, 223, 150, 0.55) 0 9px, rgba(255, 255, 255, 0) 9px 18px),
+      repeating-linear-gradient(90deg, rgba(247, 223, 150, 0.55) 0 9px, rgba(255, 255, 255, 0) 9px 18px);
+  }
+
+  /* Toldo de rayas rosa y blanco (puesto de limonada) */
+  .awning-stripes {
+    background-image: repeating-linear-gradient(90deg, #f5b9cf 0 26px, #fffdf4 26px 52px);
+  }
+
+  /* Festones colgantes del toldo */
+  .awning-scallop {
+    background-image: radial-gradient(circle at 50% 0%, #f5b9cf 11px, rgba(245, 185, 207, 0) 12px);
+    background-size: 52px 22px;
+    background-repeat: repeat-x;
+  }
+
+  /* Utilidades 3D del libro */
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+}
